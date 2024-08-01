@@ -1,4 +1,5 @@
 export default interface ILocation {
+  id: string;
   lat: number;
   long: number;
   category: string;

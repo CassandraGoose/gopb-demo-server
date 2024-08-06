@@ -1,0 +1,399 @@
+{
+  "id": "a3622a09-7822-4ac6-99a5-33a037792d03",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.category": {
+      "name": "category",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "category_type": {
+          "name": "category_type",
+          "type": "category_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.cuisine": {
+      "name": "cuisine",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cuisine_name": {
+          "name": "cuisine_name",
+          "type": "cuisine_name",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.location": {
+      "name": "location",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "long": {
+          "name": "long",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_updated": {
+          "name": "date_updated",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "menu": {
+          "name": "menu",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "plant_based_level": {
+          "name": "plant_based_level",
+          "type": "plant_based_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "editor_rating": {
+          "name": "editor_rating",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_rating": {
+          "name": "user_rating",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.location_category": {
+      "name": "location_category",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "location_category_location_id_location_id_fk": {
+          "name": "location_category_location_id_location_id_fk",
+          "tableFrom": "location_category",
+          "tableTo": "location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "location_category_category_id_category_id_fk": {
+          "name": "location_category_category_id_category_id_fk",
+          "tableFrom": "location_category",
+          "tableTo": "category",
+          "columnsFrom": [
+            "category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.location_cuisine": {
+      "name": "location_cuisine",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cuisine_id": {
+          "name": "cuisine_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "location_cuisine_location_id_location_id_fk": {
+          "name": "location_cuisine_location_id_location_id_fk",
+          "tableFrom": "location_cuisine",
+          "tableTo": "location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "location_cuisine_cuisine_id_cuisine_id_fk": {
+          "name": "location_cuisine_cuisine_id_cuisine_id_fk",
+          "tableFrom": "location_cuisine",
+          "tableTo": "cuisine",
+          "columnsFrom": [
+            "cuisine_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.location_tag": {
+      "name": "location_tag",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "location_tag_location_id_location_id_fk": {
+          "name": "location_tag_location_id_location_id_fk",
+          "tableFrom": "location_tag",
+          "tableTo": "location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "location_tag_tag_id_tag_id_fk": {
+          "name": "location_tag_tag_id_tag_id_fk",
+          "tableFrom": "location_tag",
+          "tableTo": "tag",
+          "columnsFrom": [
+            "tag_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.tag": {
+      "name": "tag",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tag_name": {
+          "name": "tag_name",
+          "type": "tag_name",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "public.category_type": {
+      "name": "category_type",
+      "schema": "public",
+      "values": [
+        "Restaurant",
+        "Grocery",
+        "Other"
+      ]
+    },
+    "public.cuisine_name": {
+      "name": "cuisine_name",
+      "schema": "public",
+      "values": [
+        "American",
+        "Brazilian",
+        "Cajun & Creole",
+        "Chinese",
+        "Colombian",
+        "Comfort",
+        "Cuban",
+        "Diner",
+        "Ethiopian",
+        "Filipino",
+        "French",
+        "Fusion",
+        "Gluten-free",
+        "Greek",
+        "Hawaiian",
+        "Healthy",
+        "Indian",
+        "Italian",
+        "Japanese",
+        "Korean",
+        "Kosher",
+        "Latin American",
+        "Mediterranean",
+        "Mexican",
+        "Middle Eastern",
+        "Moroccan",
+        "Nepalese",
+        "Paleo",
+        "Peruvian",
+        "Raw",
+        "Soul",
+        "Southern",
+        "Street",
+        "Tex-Mex",
+        "Thai",
+        "Vietnamese"
+      ]
+    },
+    "public.plant_based_level": {
+      "name": "plant_based_level",
+      "schema": "public",
+      "values": [
+        "full",
+        "partial"
+      ]
+    },
+    "public.tag_name": {
+      "name": "tag_name",
+      "schema": "public",
+      "values": [
+        "Bakery",
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Confectionery",
+        "Desserts",
+        "Fast",
+        "Fast Casual",
+        "Grocery",
+        "Raw",
+        "Restaurant",
+        "Tapas"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
